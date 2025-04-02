@@ -27,13 +27,13 @@ class Logic():
 		
 
 
-	def read_excel(self):
+	def read_data(self):
 		
 		try:
 
 			self.i = self.i + 1
 			line = self.ser.readline()
-      time.sleep(600)
+      			time.sleep(600)
 			if line: 
 				voltage = line.decode('ascii').strip()
 
@@ -56,7 +56,7 @@ class Logic():
 			self.msg.show()
 			
 	def connect(self):
-		self.timer.timeout.connect(self.read_excel)
+		self.timer.timeout.connect(self.read_data)
 		self.timer.start()
 		
 	def pause(self):
