@@ -75,22 +75,22 @@ class Logic():
 		if self.timer.isActive:
 			self.timer.stop()
 			
-		#try:	
+		try:	
 			dialog = QFileDialog()
 			self.folder_path = dialog.getExistingDirectory(None, "Zvolte slozku")
-			self.folder_path = self.folder_path + '/cisla.xlsx'
+			self.folder_path = self.folder_path + '/hodnoty.xlsx'
 			print(self.folder_path)
 			
 			zapis = pd.DataFrame(list(zip(self.window.xdata, self.window.ydata)), columns=['x', 'y'])	
 
-			print("1")
+
 			
 			with pd.ExcelWriter(self.folder_path, mode= 'w', engine='xlsxwriter') as writer:
 				zapis.to_excel(writer, sheet_name='Sheet1', index=False)
-			print("2")
+
 				
-		#except:
-		#	self.msg = QMessageBox()
-		#	self.msg.setText("Nezvolena cesta pro ulozeni excelu")
-		#	self.msg.setStandardButtons(QMessageBox.Ok)
-		#	self.msg.show()
+		except:
+			self.msg = QMessageBox()
+			self.msg.setText("Zápis se nezdařil")
+			self.msg.setStandardButtons(QMessageBox.Ok)
+			self.msg.show()
