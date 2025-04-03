@@ -19,10 +19,6 @@ class Logic():
 		self.timer = QTimer()
 		self.timer.setInterval(500)
 		self.window = window
-		
-		#self.device_bus = 1
-		#self.device_addr = 0x48
-		#elf.bus = smbus.SMBus(self.device_bus)
 		self.ser = serial.Serial(port='COM9', baudrate=9600, parity=serial.PARITY_ODD, stopbits=serial.STOPBITS_TWO, bytesize=serial.SEVENBITS)
 		
 
@@ -76,7 +72,7 @@ class Logic():
 		if self.timer.isActive:
 			self.timer.stop()
 			
-		#try:	
+		try:	
 			dialog = QFileDialog()
 			self.folder_path = dialog.getExistingDirectory(None, "Zvolte slozku")
 			self.folder_path = self.folder_path + '/cisla.xlsx'
@@ -88,8 +84,8 @@ class Logic():
 			with pd.ExcelWriter(self.folder_path, mode= 'w', engine='xlsxwriter') as writer:
 				zapis.to_excel(writer, sheet_name='Sheet1', index=False)
 				
-		#except:
-		#	self.msg = QMessageBox()
-		#	self.msg.setText("Nezvolena cesta pro ulozeni excelu")
-		#	self.msg.setStandardButtons(QMessageBox.Ok)
-		#	self.msg.show()
+		except:
+			self.msg = QMessageBox()
+			self.msg.setText("Zápis se nezdařil")
+			self.msg.setStandardButtons(QMessageBox.Ok)
+			self.msg.show()
