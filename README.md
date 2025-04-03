@@ -16,6 +16,7 @@ V repozitáři bluetooth je uložena aplikace pro připojení k Arduinu, ve slo�
 
 To do:
   * ukládání měřených dat do databáze, současně s tím průběžné promazávání obrazovky
+  * vylepšit ukládání do excelu, např. ukládat také informace o uživateli
   * možnost nastavení svislé a vodorovné osy grafu
   * analýza dat - průměrná hodnota, energie a výkon signálu, spektrum
   * řízení dalších zařízení nebo programů snímaným signálem - zpětnovazební systém
