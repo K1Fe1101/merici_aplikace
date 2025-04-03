@@ -36,9 +36,9 @@ void setup() {
   lcd.init();           
   lcd.backlight();     ­
   lcd.setCursor(2, 0);  
-  lcd.print("LET projekt"); 
+  lcd.print("Arduino"); 
   lcd.setCursor(0, 1);  
-  lcd.print("Tep. frek a SpO2"); 
+  lcd.print("Měřicí aplikace"); 
   delay(500);
   lcd.clear();
   pinMode(user1, INPUT);
@@ -48,12 +48,12 @@ void setup() {
 }
 
 void obrazovka1(){
-    float napeti = vypocet_napeti();
-    Serial.println(napeti);
+    float voltage = vypocet_napeti();
+    Serial.println(voltage);
     lcd.setCursor(5, 0);
     lcd.backlight();
-    lcd.print(napeti);
-    bluetooth.println(napeti);
+    lcd.print(voltage);
+    bluetooth.println(voltage);
     delay(600);
     lcd.clear();
 }
