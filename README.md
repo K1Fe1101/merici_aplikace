@@ -19,5 +19,6 @@ To do:
   * vylepšit ukládání do excelu, např. ukládat také informace o uživateli
   * možnost nastavení svislé a vodorovné osy grafu
   * analýza dat - průměrná hodnota, energie a výkon signálu, spektrum
+  * rozšíření databáze o další databázové objekty
   * řízení dalších zařízení nebo programů snímaným signálem - zpětnovazební systém
   * ...
