@@ -19,32 +19,40 @@ class Logic():
 		self.timer = QTimer()
 		self.timer.setInterval(500)
 		self.window = window
-		self.ser = serial.Serial(port='COM9', baudrate=9600, parity=serial.PARITY_ODD, stopbits=serial.STOPBITS_TWO, bytesize=serial.SEVENBITS)
+		try:
+			self.ser = serial.Serial(port='COM9', baudrate=9600, parity=serial.PARITY_ODD, stopbits=serial.STOPBITS_TWO, bytesize=serial.SEVENBITS, timeout=0)
+		except serial.SerialException:
+            self.msg = QMessageBox()
+			self.msg.setText("Nelze připojit bluetooth.")
+			self.msg.show()
+            return
 		
 
 
 	def read_data(self):
 		
 		try:
+			if self.ser.in_waiting == 0:
+                return
 
 			self.i = self.i + 1
-			line = self.ser.readline()
-      			time.sleep(600)
-			if line: 
-				voltage = line.decode('ascii').strip()
+			line = self.ser.readline().decode('ascii').strip()
+      			
+			if not line:
+				return
+			voltage = float(line)
 
 	
-				self.window.sMeasuredVal.setText(str(voltage) + " V")
-				self.voltage = float(voltage)
-	
-				self.window.ydata.append(self.voltage)
-				self.window.xdata.append(self.i)
+			self.window.sMeasuredVal.setText(str(voltage) + " V")
+			self.voltage = float(voltage)
+			self.window.ydata.append(self.voltage)
+			self.window.xdata.append(self.i)
 			
-				self.window.line1.set_xdata(self.window.xdata)
-				self.window.line1.set_ydata(self.window.ydata)
+			self.window.line1.set_xdata(self.window.xdata)
+			self.window.line1.set_ydata(self.window.ydata)
 			
-				self.window.canvas.draw()
-				self.window.figure.canvas.flush_events()
+			self.window.canvas.draw()
+			self.window.figure.canvas.flush_events()
 		except:
 			self.pause()
 			self.msg = QMessageBox()
