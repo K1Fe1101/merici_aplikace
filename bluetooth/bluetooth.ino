@@ -32,7 +32,6 @@ float vypocet_napeti(){
 }
 void setup() {
   Serial.begin(9600);
-  delay(1000);
   lcd.init();           
   lcd.backlight();     ­
   lcd.setCursor(2, 0);  
@@ -54,7 +53,6 @@ void obrazovka1(){
     lcd.backlight();
     lcd.print(voltage);
     bluetooth.println(voltage);
-    delay(600);
     lcd.clear();
 }
 
